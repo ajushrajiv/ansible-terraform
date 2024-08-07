@@ -1,0 +1,41 @@
+- name: Play for host1
+  hosts: host1
+  tasks:
+    - name: Send message from host1
+      command: echo "Hello from host1"
+
+- name: Play for host2
+  hosts: host2
+  tasks:
+    - name: Send message from host2
+      command: echo "Hello from host2"
+
+- name: Play for host3
+  hosts: host3
+  tasks:
+    - name: Send message from host3
+      command: echo "Hello from host3"
+
+- name: Play for supergroup
+  hosts: supergroup
+  tasks:
+    - name: Get session token
+      shell: 'curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"'
+      register: token
+
+    - name: Get public IP address
+      shell: 'curl -s http://169.254.169.254/latest/meta-data/public-ipv4 -H "X-aws-ec2-metadata-token: {{ token.stdout }}"'
+      register: public_ip_address
+
+    - name: Debug public IP address
+      debug:
+        var: public_ip_address
+
+    - name: Display public IP address
+      debug:
+        msg: "Public IP address of {{ inventory_hostname }} is {{ public_ip_address.stdout }}"
+
+
+
+
+
