@@ -1,0 +1,30 @@
+---
+- name: Exercise 4 - servers
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Ensure Git is installed
+      package:
+        name: git
+        state: present
+
+- name: Exercise 4 - single host
+  hosts: host2
+  become: yes
+
+  tasks:
+    - name: Ensure Git is installed
+      package:
+        name: git
+        state: present
+
+- name: Exercise 4 - single group
+  hosts: group2
+  become: yes
+
+  tasks:
+    - name: Ensure Git is installed
+      package:
+        name: git
+        state: present
