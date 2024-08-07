@@ -1,0 +1,10 @@
+---
+- name: Exercise 2
+  hosts: all_hosts
+  become: yes
+
+  tasks:
+    - name: Ensure Git is installed
+      package:
+        name: git
+        state: present

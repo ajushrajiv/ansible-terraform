@@ -1,0 +1,25 @@
+all:
+  children:
+    all_hosts:
+      children:
+        host1:
+          hosts:
+            EC2-1:
+              ansible_host: 18.157.77.64
+              ansible_ssh_common_args: -o StrictHostKeyChecking=no
+              ansible_ssh_private_key_file: ~/test-keypair.pem
+              ansible_user: ubuntu
+        host2:
+          hosts:
+            EC2-2:
+              ansible_host: 3.70.193.241
+              ansible_ssh_common_args: -o StrictHostKeyChecking=no
+              ansible_ssh_private_key_file: ~/test-keypair.pem
+              ansible_user: ubuntu
+        host3:
+          hosts:
+            EC2-3:
+              ansible_host: 3.73.33.56
+              ansible_ssh_common_args: -o StrictHostKeyChecking=no
+              ansible_ssh_private_key_file: ~/test-keypair.pem
+              ansible_user: ubuntu
