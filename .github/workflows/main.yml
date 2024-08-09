@@ -66,6 +66,7 @@ jobs:
           echo "${{ env.NGINX2_EC2_IP }}" >> inventory
           echo "[httpd]" >> inventory
           echo "${{ env.HTTPD_EC2_IP }}" >> inventory
+          echo "[all:vars]" >> inventory
           echo "ansible_user=ubuntu" >> inventory
           echo "ansible_ssh_private_key_file=/home/runner/.ssh/id_rsa" >> inventory
           echo "ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory
