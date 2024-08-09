@@ -43,3 +43,16 @@ jobs:
       - name: 'Terraform Apply'
         run: terraform apply -auto-approve
         working-directory: ./ansible-terraform-day3/terraform
+
+      
+      - name: Output EC2 instance IPs
+        id: ec2_ips
+        run: |
+          public_ips=$(terraform output -json public_ips)
+          nginx_ip=$(echo $public_ips | jq -r '.[0]')
+          httpd_ip=$(echo $public_ips | jq -r '.[1]')
+          nginx2_ip=$(echo $public_ips | jq -r '.[2]')
+          echo "::set-output name=nginx_ip::$nginx_ip"
+          echo "::set-output name=httpd_ip::$httpd_ip"
+          echo "::set-output name=nginx_ip::$nginx2_ip"
+        working-directory: ./ansible-terraform-day3/terraform
