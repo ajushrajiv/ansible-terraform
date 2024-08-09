@@ -76,6 +76,9 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
           ssh-keyscan -H github.com >> /home/runner/.ssh/known_hosts
+          ssh-keyscan -H ${{ env.NGINX_EC2_IP }} >> /home/runner/.ssh/known_hosts
+          ssh-keyscan -H ${{ env.NGINX2_EC2_IP }} >> /home/runner/.ssh/known_hosts
+          ssh-keyscan -H ${{ env.HTTPD_EC2_IP }} >> /home/runner/.ssh/known_hosts
 
       - name: Install Nginx and Httpd
         run: |
